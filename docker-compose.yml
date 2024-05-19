@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+ web:
+   build: .
+   volumes:
+     - .:/loan_repayment
+   ports:
+     - "8050:8000"
+   container_name: loan_repayment_web
+   command: python manage.py runserver 0.0.0.0:8000
+   restart: always
+   networks:
+     - app-network
+   stdin_open: true
+   tty: true
+
+networks:
+ app-network:
+   driver: bridge
